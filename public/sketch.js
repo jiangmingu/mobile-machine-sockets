@@ -1,6 +1,8 @@
 // Create connection to Node.js Server
 const socket = io();
 
+let canvas;
+
 // Permission button (iOS)
 let askButton;
 let isMobileDevice = true;
@@ -20,7 +22,7 @@ let frontToBack = 0;
 let leftToRight = 0;
 
 function setup() {
-  createCanvas(400, 400);
+  canvas = createCanvas(windowWidth, windowHeight);
   rectMode(CENTER);
   angleMode(DEGREES);
   textSize(16);
@@ -48,7 +50,6 @@ function setup() {
 
 function draw() {
   background(240);
-
 
   // -------- DESKTOP MESSAGE --------
   if (!isMobileDevice) {
@@ -166,6 +167,20 @@ function displayPermissionMessage() {
 
 
 // --------------------
+// Socket events
+// --------------------
+
+socket.on("connect", () => {
+  console.log("Connected:", socket.id);
+});
+
+socket.on("motionData", (data) => {
+  console.log("Remote device data:", data);
+  // Here is where another client could visualise / react
+});
+
+
+// --------------------
 // Permission handling
 // --------------------
 
@@ -200,19 +215,6 @@ function handlePermissionButtonPressed() {
   askButton.remove();
 }
 
-
-// --------------------
-// Socket events
-// --------------------
-
-socket.on("connect", () => {
-  console.log("Connected:", socket.id);
-});
-
-socket.on("motionData", (data) => {
-  console.log("Remote device data:", data);
-  // Here is where another client could visualise / react
-});
 
 // --------------------
 // Sensor handlers
@@ -264,3 +266,10 @@ function checkMobileDevice() {
     whether the device is a phone, tablet, or desktop with much
     higher accuracy than a simple regex.
 */
+
+
+function windowResized() {
+
+  resizeCanvas(windowWidth, windowHeight);
+
+}
