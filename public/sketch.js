@@ -121,32 +121,32 @@ function visualiseMyData(){
   push();
   fill(255);
   rectMode(CORNER);
-  rect(0,40,width/2,250);
+  rect(0,20,width/2,210);
   pop();
-  
+
   // Debug text
   fill(0);
   textAlign(LEFT);
 
-  text("Acceleration:", 10, 60);
+  text("Acceleration:", 10, 40);
   text(
     accX.toFixed(2) + ", " + accY.toFixed(2)+ ", " + accZ.toFixed(2),
     10,
-    80
+    60
   );
 
-  text("Rotation rate:", 10, 120);
+  text("Rotation rate:", 10, 100);
   text(
     rrateX.toFixed(2) + ", " + rrateY.toFixed(2) + ", " + rrateZ.toFixed(2),
     10,
-    140
+    120
   );
 
-  text("Orientation:", 10, 180);
+  text("Orientation:", 10, 160);
   text(
     rotateDegrees.toFixed(2) + ", " + leftToRight.toFixed(2) + ", " + frontToBack.toFixed(2),
     10,
-    200
+    180
   );
 }
 
@@ -193,7 +193,7 @@ function displayPermissionMessage() {
 
 //visualise other drawing
 function drawOthers(data){
-  let rectHeight = map(data.orientation.beta, -360,360,0,height);//front to back is beta
+  let rectHeight = map(data.orientation.beta, -90,90,0,height);//front to back is beta
   console.log(rectHeight,data.orientation.beta);
   fill(0,0,255);
   push();
