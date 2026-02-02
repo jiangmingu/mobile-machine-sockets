@@ -23,8 +23,11 @@ let leftToRight = 0;
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
+  canvas.parent("sketch-container"); 
+
   rectMode(CENTER);
   angleMode(DEGREES);
+  //text styling
   textSize(16);
   textAlign(CENTER);
   textWrap(WORD);
@@ -37,8 +40,10 @@ function setup() {
     typeof DeviceMotionEvent.requestPermission === "function" &&
     typeof DeviceOrientationEvent.requestPermission === "function"
   ) {
+    //add a button for permissions
     askButton = createButton("Enable Motion Sensors");
-    askButton.position(10, 10);
+    askButton.parent("sketch-container");
+    askButton.id("permission-button"); // to add special styling for this button in style.css
     askButton.mousePressed(handlePermissionButtonPressed);
   } else {
     // Android / non-permission devices
