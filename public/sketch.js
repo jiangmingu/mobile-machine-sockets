@@ -177,20 +177,25 @@ function displayDesktopMessage() {
   fill(0);
   textAlign(CENTER);
   let message = "This is a mobile experience. Please open this URL on your phone’s browser.";
-  text(message, width / 2, height / 2, width);//4th parameter to get text to wrap to new line if wider than canvas
+  text(message, width / 2, 30, width);//4th parameter to get text to wrap to new line if wider than canvas
 }
 
 function displayPermissionMessage() {
   fill(0);
   textAlign(CENTER);
   let message = "Waiting for motion sensor permission, click the button to allow.";
-  text(message, width / 2, height / 2, width);//4th parameter to get text to wrap to new line if wider than canvas
+  text(message, width / 2, 30, width);//4th parameter to get text to wrap to new line if wider than canvas
 }
 
+//visualise other drawing
 function drawOthers(data){
   let rectHeight = map(data.orientation.beta, -360,360,0,height);//front to back is beta
-  fill(255,0,0,100);
-  rect(data.screenPosition.x,0,30,rectHeight);
+  console.log(rectHeight,data.orientation.beta);
+  fill(0,0,255,200);
+  push();
+  rectMode(CORNER);
+  rect(data.screenPosition.x,0,40,rectHeight);
+  pop();
 }
 
 
