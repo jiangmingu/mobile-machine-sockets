@@ -114,8 +114,8 @@ function drawOthers(id){
 
   let rectHeight = map(motion.orientation.beta, -90,90,0,height);//front to back is beta
   // console.log(rectHeight,motion.orientation.beta);
-  
-  fill(0,0,255,200);// slightly transparent
+
+  fill(0,0,255,100);// slightly transparent
   push();
   rectMode(CORNER);
   noStroke();
