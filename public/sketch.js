@@ -79,6 +79,7 @@ function draw() {
       displayPermissionMessage();
     }else{
 
+      console.log(experienceState.users);
       // draw all users including myself
       for (let id in experienceState.users) {
         //if I'm a moving device not a PC / laptop
