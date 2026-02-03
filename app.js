@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
 
   // Code to run every time we get a message from front-end P5.JS
   socket.on("motionData", (data) => {
-    console.log(data);// print to console
+    //console.log(data);// print to console
     const user = experienceState.users[socket.id];
     if (!user) return;
 

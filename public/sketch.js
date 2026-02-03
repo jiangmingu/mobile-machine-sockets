@@ -110,10 +110,11 @@ function draw() {
 function drawOthers(id){
   let u = experienceState.users[id];
   let motion = u.motionData;
-  console.log(u);
+  // console.log(u);
 
   let rectHeight = map(motion.orientation.beta, -90,90,0,height);//front to back is beta
-  console.log(rectHeight,motion.orientation.beta);
+  // console.log(rectHeight,motion.orientation.beta);
+  
   fill(0,0,255,200);// slightly transparent
   push();
   rectMode(CORNER);
