@@ -30,25 +30,8 @@ io.on("connection", (socket) => {
 
   // Create user + data structure
   experienceState.users[socket.id] = {
-    screenPosition: { 
-      x: 0,
-      y: 0
-    },
-    acceleration: {
-      x: 0,
-      y: 0,
-      z: 0,
-    },
-    rotationRate: {
-      alpha: 0,
-      beta: 0,
-      gamma: 0,
-    },
-    orientation: {
-      alpha: 0,
-      beta: 0,
-      gamma: 0,
-    }
+    deviceMoves: false,  // flag used to only draw moving devices
+    motionData: {}       // motion data stored here
   };
 
   // Send FULL state once (on join only)
@@ -69,15 +52,14 @@ io.on("connection", (socket) => {
     const user = experienceState.users[socket.id];
     if (!user) return;
 
-    user.screenPosition = data.screenPosition;
-    user.acceleration = data.acceleration;
-    user.rotationRate = data.rotationRate;
-    user.orientation = data.orientation;
+    user.deviceMoves = true;
+    user.motionData = data;
 
     //broadcast.emit means send to everyone but the sender
     socket.broadcast.emit("userMoved", {
       id: socket.id,
-      motion: data
+      deviceMoves: user.deviceMoves,
+      motion: user.motionData
     });
 
   });

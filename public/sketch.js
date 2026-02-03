@@ -81,7 +81,10 @@ function draw() {
 
       // draw all users including myself
       for (let id in experienceState.users) {
-        drawOthers(id);
+        //if I'm a moving device not a PC / laptop
+        if(experienceState.users[id].deviceMoves){
+          drawOthers(id);
+        }
       }
 
       // MY MOBILE DEVICE
@@ -251,7 +254,8 @@ socket.on("userMoved", (data) => {
   // console.log(data);
   let id = data.id;
   if (experienceState.users[id]) {
-    experienceState.users[id] = data.motion
+    experienceState.users[id].deviceMoves = data.deviceMoves;
+    experienceState.users[id].motionData = data.motion;
   }
 });
 
