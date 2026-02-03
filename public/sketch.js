@@ -246,7 +246,7 @@ socket.on("userLeft", (id) => {
 
 // someone moved
 socket.on("userMoved", (data) => {
-  console.log(motionData);
+  console.log(data);
   let id = data.id;
   if (experienceState.users[id]) {
     experienceState.users[id] = data.motion
