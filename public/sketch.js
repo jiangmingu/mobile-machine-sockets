@@ -116,7 +116,7 @@ function drawOthers(id){
   //let rectHeight = map(motion.orientation.beta, -90,90,0,height);//front to back is beta
   // console.log(rectHeight,motion.orientation.beta);
   let flowerPositionX = map(motion.orientation.beta,-90,90,0,height);
-    let flowerPositionY = map(motion.orientation.gamma,-90,90,0,width);
+  let flowerPositionY = map(motion.orientation.gamma,-90,90,0,width);
   fill(0,0,255,100);// slightly transparent
   push();
   //rectMode(CORNER);
@@ -180,7 +180,7 @@ function visualiseMyData(){
   fill(200);
   //rectMode(CORNER);
   //rect(0,20,width/2,190);
-  flower(randomX,randomY,8,60);
+  
   pop();
 
   // Debug text
