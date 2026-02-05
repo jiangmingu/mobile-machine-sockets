@@ -121,7 +121,7 @@ function drawOthers(id){
   //rectMode(CORNER);
   noStroke();
   //rect(motion.screenPosition.x,0,40,rectHeight);
-  flower(motion.screenPosition.x,motion.screenPosition.y,5,20);
+  flower(motion.orientation.beta,motion.orientation.gamma,5,20);
   pop();
 
 }
