@@ -41,7 +41,7 @@ function setup() {
   randomX = random(50,width-50);
   randomY = random(50,height-50);
 
-  rectMode(CENTER);
+  //rectMode(CENTER);
   angleMode(DEGREES);
   //text styling
   textSize(16);
@@ -98,8 +98,9 @@ function draw() {
       // Send my data to the server (throttle via frameRate if needed)
       emitData();
     }
-  }
 
+  }
+  
 }
 
 // --------------------
@@ -112,16 +113,34 @@ function drawOthers(id){
   let motion = u.motionData;
   // console.log(u);
 
-  let rectHeight = map(motion.orientation.beta, -90,90,0,height);//front to back is beta
+  //let rectHeight = map(motion.orientation.beta, -90,90,0,height);//front to back is beta
   // console.log(rectHeight,motion.orientation.beta);
-
+  //let flowerPosition = map(motion.orientation.beta,-90,90,0,height);
   fill(0,0,255,100);// slightly transparent
   push();
-  rectMode(CORNER);
+  //rectMode(CORNER);
   noStroke();
-  rect(motion.screenPosition.x,0,40,rectHeight);
+  //rect(motion.screenPosition.x,0,40,rectHeight);
+  flower(motion.screenPosition.x,motion.screenPosition.y,5,20);
   pop();
 
+}
+
+function flower(x,y,petals,size){
+  push();
+  translate(x,y);
+
+  for (let i = 0 ; i < petals ; i++){
+    push();
+    rotate((360 / petals) * i);
+
+    fill(200,150);
+    ellipse(size* 0.35,0,size* 0.65,size* 0.22);
+    pop();
+  }
+  fill(200,210);
+  ellipse(0,0,size * 0.25,size * 0.25);
+  pop();
 }
 
 
@@ -157,9 +176,10 @@ function visualiseMyData(){
   pop();
 
   push();
-  fill(255);
-  rectMode(CORNER);
-  rect(0,20,width/2,190);
+  fill(200);
+  //rectMode(CORNER);
+  //rect(0,20,width/2,190);
+  flower(randomX,randomY,8,60);
   pop();
 
   // Debug text
@@ -324,6 +344,8 @@ function windowResized() {
 // Sensor handlers
 // --------------------
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/devicemotion_event
+
+
 function deviceMotionHandler(event) {
   if (!event.acceleration || !event.rotationRate){
     return;
