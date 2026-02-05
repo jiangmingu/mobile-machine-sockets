@@ -1,6 +1,8 @@
 // Create connection to Node.js Server
 const socket = io();
 
+let bearImg;
+
 let canvas;
 
 let randomX;
@@ -67,7 +69,9 @@ function setup() {
     hasPermission = true;
   }
 }
-
+function preload(){
+  bearImg = loadImage("bear.png"); 
+}
 function draw() {
   background(240);
 
@@ -117,16 +121,25 @@ function drawOthers(id){
   // console.log(rectHeight,motion.orientation.beta);
   let flowerPositionX = map(motion.orientation.gamma,-90,90,0,height);
   let flowerPositionY = map(motion.orientation.beta,-90,90,0,width);
+  let bearX = map(motion.orientation.gamma,-90,90,0,height);
+  let bearY = map(motion.orientation.beta,-90,90,0,width);
   fill(0,0,255,100);// slightly transparent
   push();
   //rectMode(CORNER);
   noStroke();
   //rect(motion.screenPosition.x,0,40,rectHeight);
   flower(flowerPositionX,flowerPositionY,5,20);
+  bear(bearX,bearY);
   pop();
 
 }
-
+function bear(x,y){
+  push();
+  translate(x,y);
+  ImageBitmapRenderingContext(CENTER);
+  Image(bearImg,0,0,120,120);
+  pop();
+}
 function flower(x,y,petals,size){
   push();
   translate(x,y);
